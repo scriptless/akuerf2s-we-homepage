@@ -11,16 +11,33 @@
             margin: 0;
         }
         nav.navbar {
-            height: 4rem;
+            height: auto;
             background-color: white;
             display: flex;
-            gap: 1.5rem;
+            flex-direction: column;
+            gap: 1rem;
             justify-content: center;
             align-items: center;
+            padding: 1rem 0;
         }
         nav.navbar > .navbar-item {
             text-decoration: none;
             font-size: larger;
+        }
+
+        /* Medium */
+        @media only screen and (min-width: 640px) {
+            nav.navbar {
+                height: 4rem;
+                flex-direction: row;
+                gap: 1.5rem;
+                padding: 0;
+            }
+        }
+
+        /* Large */
+        @media only screen and (min-width: 1024px) {
+
         }
     </style>
 </head>
