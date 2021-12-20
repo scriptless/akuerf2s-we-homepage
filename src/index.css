@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Image by Felix Mittermeier
+ * Source: https://www.pexels.com/photo/blue-and-purple-cosmic-sky-956999/
+ */
 .bg-image {
     background-image: url("../public/assets/img/background.jpg");
     background-size: cover;
