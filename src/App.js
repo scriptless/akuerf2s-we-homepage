@@ -1,4 +1,5 @@
-import { RecoilRoot, atom } from "recoil";
+import { useState, useEffect } from "react";
+import { RecoilRoot, atom, useRecoilState } from "recoil";
 import ContentBlock from "./components/content/ContentBlock";
 import Footer from "./components/nav/Footer";
 import Navbar from "./components/nav/Navbar";
@@ -12,17 +13,17 @@ export const navigationState = atom({
 })
 
 function App() {
-  return (
-    <RecoilRoot>
+    const [navState, setNavState] = useRecoilState(navigationState);
+
+    return (
         <div className="App h-screen bg-image">
             <Navbar/>
-            <div className="max-w-6xl mx-auto">
-                <ContentBlock/>
+            <div className="max-w-6xl mx-auto">   
+                <ContentBlock main={navState.main} sub={navState.sub}/>
             </div>
             <Footer/>
         </div>
-    </RecoilRoot>
-  );
+    );
 }
 
 export default App;

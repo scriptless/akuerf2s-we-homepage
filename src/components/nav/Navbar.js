@@ -10,6 +10,7 @@ function NavLink(index) {
 
     return (
         <a 
+        key={index}
         onClick={() => setNavState({ ...navState, main: index, sub: 1 })} 
         className={`py-1 my-1 sm:my-3 w-12 sm:w-14 cursor-pointer flex items-center justify-center font-semibold 
         ${active ? 'text-white bg-blue-700 rounded-full italic' : 'text-gray-300 hover:text-gray-100'}`}>{index}</a>
