@@ -1,0 +1,93 @@
+[
+    { 
+        "id": 1,
+        "subs": [
+            { "id": 1, "title": "Über das WWW" },
+            { "id": 2, "title": "HTTP Protokoll" },
+            { "id": 3, "title": "Über HTML" },
+            { "id": 4, "title": "HTML Wireframe" }
+        ] 
+    },
+    { 
+        "id": 2,
+        "subs": [
+            { "id": 1, "title": "CSS Selektoren & Farben" },
+            { "id": 2, "title": "CSS Positionierung" },
+            { "id": 3, "title": "Wireframe HTML & CSS" }
+        ] 
+    },
+    { 
+        "id": 3,
+        "subs": [
+            { "id": 1, "title": "Responsiv Flexbox Desktop-First" },
+            { "id": 2, "title": "Responsiv Grid Mobile-First" },
+            { "id": 3, "title": "Responsiv Grid" }
+        ] 
+    },
+    { 
+        "id": 4,
+        "subs": [
+            { "id": 1, "title": "Funktionen" },
+            { "id": 2, "title": "Objekte" },
+            { "id": 3, "title": "Fibonacci" },
+            { "id": 4, "title": "Topsort" }
+        ] 
+    },
+    { 
+        "id": 5,
+        "subs": [
+            { "id": 1, "title": "Performanzmessung" },
+            { "id": 2, "title": "Rednerliste" },
+            { "id": 3, "title": "Topsort Webapp" }
+        ] 
+    },
+    { 
+        "id": 6,
+        "subs": [
+            { "id": 1, "title": "Klammerpaare" },
+            { "id": 2, "title": "Topologische Iterierbarkeit" },
+            { "id": 3, "title": "Topologischer Generator" },
+            { "id": 4, "title": "Proxy" },
+            { "id": 5, "title": "DeepCopy" }
+        ] 
+    },
+    { 
+        "id": 7,
+        "subs": [
+            { "id": 1, "title": "Funktionen in JavaScript" },
+            { "id": 2, "title": "Textanalyse" }
+        ] 
+    },
+    { 
+        "id": 8,
+        "subs": [
+            { "id": 1, "title": "Promises" },
+            { "id": 2, "title": "async/await" },
+            { "id": 3, "title": "WWW-Navigator" }
+        ] 
+    },
+    { 
+        "id": 9,
+        "subs": [
+            { "id": 1, "title": "SVG von Hand" },
+            { "id": 2, "title": "SVG Balkendiagramm" },
+            { "id": 3, "title": "SVG Tic-Tac-Toe" }
+        ] 
+    },
+    { 
+        "id": 10,
+        "subs": [
+            { "id": 1, "title": "TS Static classes" },
+            { "id": 2, "title": "Fehler finden in TS" },
+            { "id": 3, "title": "Deno mit TypeScript" }
+        ] 
+    },
+    { 
+        "id": 11,
+        "subs": [
+            { "id": 1, "title": "Vue Komponente" },
+            { "id": 2, "title": "Vue Menu-Komponente" },
+            { "id": 3, "title": "Vue WWW-Navigator" }
+        ] 
+    }
+]

@@ -8,7 +8,7 @@ export default function Footer() {
                     <a className="cursor-pointer flex items-center font-semibold text-white italic">JavaScript</a>
                     <a className="cursor-pointer flex items-center font-semibold text-gray-300 hover:text-gray-100">Other</a>
                 </ul>
-                <p className="text-white">Solution-Navigator v1.0</p>
+                <p className="text-gray-100 font-normal">Erstellt von akuerf2s in Web-Engineering WS21/22</p>
             </div>
         </div>
     )
