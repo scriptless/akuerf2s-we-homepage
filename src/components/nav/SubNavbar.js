@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { navigationState } from "../../App";
-import data from "../../navigation.json";
+import data from "../../data/navigation.json";
 
 export default function SubNavbar() {
 
@@ -13,7 +13,7 @@ export default function SubNavbar() {
         const active = sub.id === navState.sub
 
         items.push(
-            <a onClick={() => setNavState({ ...navState, sub: sub.id })} className={`mr-10 py-3 sm:py-4 cursor-pointer flex items-center font-semibold ${active ? 'text-white italic' : 'text-gray-400 hover:text-gray-300'}`}>
+            <a onClick={() => setNavState({ ...navState, sub: sub.id })} className={`mr-10 py-3 sm:py-4 cursor-pointer flex items-center font-semibold ${active ? 'text-white' : 'text-gray-400 hover:text-gray-300'}`}>
                 {sub.title}
             </a>
         )
