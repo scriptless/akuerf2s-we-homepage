@@ -1,0 +1,50 @@
+<strong>
+    In jedem Projekt fallen Aufgaben (Tasks) an. Zwischen den Aufgaben gibt es paarweise Abhängigkeiten. Z.B. kann Task2 von Task1 abhängen, d.h. erst muss Task1 fertig sein, bevor Task2 starten kann, weil es dessen Ergebnisse benötigt. Tasks können auch unabhängig voneinander sein und parallel ablaufen. In JavaScript können Sie die Abhängigkeiten in Arrays codieren, z.B. kann man bei [ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ] nicht prüfen, ohne vorher gegessen zu haben. Transitive Abhängigkeiten müssen also berücksichtigt werden.
+
+Schreiben Sie in JavaScript eine Funktion topsort(), die eine topologische Sortierung berechnet. Topologische Sortierung ist eine Form von Sortierung. Sie kennen die Funktion Array.prototype.sort() und wissen, was als Ergebnis erwartet wird, nämlich eine sortiere Liste. Genauso ist das hier. Die Funktion topsort() soll eine sortierte Liste ausgeben, die keine der eingegebenen Abhängigkeiten verletzt.
+
+Achten Sie auf Performanz. Berechnen Sie die topologische Sortierung in linearer Zeit (Average Case).
+</strong>
+<br/>
+<pre>
+var test = [["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"]];
+
+function topsort(test) {
+	var length = test.length;
+  var visited = []; 
+  for(i = 0; i < length; i++) {
+  	visited[i] = false;
+  }
+  var result = [];
+  
+  function dfs(node) {
+  	if(visited[node]) return;
+    visited[node] = true;
+    for(var adj of test[node]) {
+    	dfs(adj);
+    }
+    result.append(node);
+  }
+  
+  for(i = 0; i < length; i++) {
+  	dfs(i);
+  }
+  
+  console.log(result);
+  return result;
+
+}
+
+topsort(test);
+</pre>
+<br/>
+<br/>
+<strong>
+    Testen Sie Ihren JavaScript-Code. Verwenden Sie für Ihre Tests die Funktion console.assert. Geben Sie hier Ihre Tests ein:
+</strong>
+<br/>
+<pre>
+console.assert(test, "Es muss ein array angegeben werden");
+console.assert(topsort(test), [["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"]]);
+console.assert(topsort(test).length, 3);
+</pre>

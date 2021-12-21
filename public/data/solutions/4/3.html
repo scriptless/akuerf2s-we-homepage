@@ -1,0 +1,52 @@
+<strong>
+    Schreiben Sie im Browser die Fibonacci-Funktion in JavaScript und geben Sie die ersten 2000 Fibonacci-Zahlen 0,1,1,2,3,5,8,13,... auf der Konsole mit console.log() aus.
+
+Achten Sie auf Performanz: Berechnen Sie jeden Fibonacci-Wert nur einmal. Speichern Sie zu diesem Zweck jede bereits berechnete Fibonacci-Zahl in einer Tabelle.
+</strong>
+<br/>
+<pre>
+    var number = 2000;
+    var a = 0;
+    var b = 1; 
+    var next;
+    
+    for (var i = 1; i <= number; i++) {
+        console.log(a);
+        next = a + b;
+        a = b;
+        b = next;
+    }
+</pre>
+<br/>
+<br/>
+<strong>
+    Was ist die größte Fibonacci-Zahl, die sich noch als Integer sicher speichern lässt (Number.MAX_SAFE_INTEGER)? Die wievielte Fibonacci-Zahl in der Fibonacci-Folge ist das?
+</strong>
+<br/>
+8944394323791464<br/>
+79. Zahl<br/>
+<br/>
+<strong>
+    Was ist die größte Fibonacci-Zahl, die sich noch als Number speichern lässt (Number.MAX_VALUE)? Die wievielte Fibonacci-Zahl in der Fibonacci-Folge ist das (d.h. welche Stelle in der Fibonacci-Folge)?
+</strong>
+<br/>
+1.3069892237633987e+308<br/>
+1477. Zahl<br/>
+<br/>
+<strong>
+    Wechseln Sie zu BigInt, um alle 2000 Fibonacci-Zahlen korrekt anzuzeigen. Geben Sie hier HTML- und JavaScript-Code zusammen ein:
+</strong>
+<br/>
+<pre>
+var number = 2000;
+var a = 0n;
+var b = 1n; 
+var next;
+
+for (var i = 1; i <= number; i++) {
+    console.log((a).toLocaleString());
+    next = a + b;
+    a = b;
+    b = next;
+}
+</pre>

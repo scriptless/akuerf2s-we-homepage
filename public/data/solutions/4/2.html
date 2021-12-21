@@ -1,0 +1,35 @@
+<strong>
+    Schreiben Sie die Prototypen Person und Auto in JavaScript, so dass jede Person weiß, welche Autos sie besitzt. Schreiben Sie eine Funktion conflict(), die feststellt, ob ein Auto von mehr als einer Person besessen wird.
+</strong>
+<br/>
+<pre>
+     function Auto(marke, kennzeichen) {
+        this.marke = marke;
+        this.kennzeichen = kennzeichen;
+      }
+      
+      function Person(name, auto) {
+        this.name = name;
+        this.auto = auto;
+      }
+      
+      var personen = []
+      var auto = new Auto("Audi", "BN-AB123")
+      var person1 = new Person("Max", auto)
+      var person2 = new Person("Alex", auto)
+      personen.push(person1, person2)
+      
+      function conflict() {
+        for(var p1 of personen) {
+            for(var p2 of personen) {
+              if(p1 === p2) continue;
+              if(p1.auto === p2.auto) {
+                console.log("Conflict! Auto hat Besitzer " + p1.name + " und " + p2.name)
+                break;
+            }
+          }
+        }
+      }
+      
+      conflict();
+    </pre>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      html {
+        font-family: Roboto;
+      }
+	  body {
+		margin: 0px;
+	  }
+      .nav {
+        background-color: #363636;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-rows: 1 / span 1;
+        grid-column: 1 / span 1;
+      }
+      .nav a {
+        color: #f0f0f0;
+        padding: 2rem 0.5rem;
+        text-decoration: none;
+      }
+      .main {
+        background-color: #ebeae6;
+        height: 100%;
+        width: 100%;
+        grid-row: 2 / span 5;
+        grid-column: 1 / span 1;
+      }
+      .footer {
+        background-color: #011826;
+        color: #f0f0f0;
+        height: 100%;
+        width: 100%;
+        grid-row: -2 / span 1;
+        grid-column: 1 / span 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+      }
+      .content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 5rem repeat(5, 1fr) 2fr;
+      }
+      .book {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+	  .book-img {
+	    grid-column: 1 / span 1;
+		margin: 30px;
+		display: flex;
+		justify-content: right;
+	  }
+      .book-img img {
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+      .book-text {
+		display: flex;
+		justify-content: left;
+		padding-top: 5rem;
+        text-align: center;
+        grid-columns: 2 / span 1;
+      }
+      .btn {
+        padding: 8px 40px;
+        text-transform: uppercase;
+        background-color: #f88e36;
+        color: white;
+        border-radius: 5px;
+        border: 0;
+      }
+	  @media screen and (max-width: 800px) {
+		.content {
+			grid-template-rows: repeat(6, 1fr) 2fr;
+		}
+		.book {
+		    grid-template-columns: 1fr;
+		}
+		.book-text {
+			padding-top: 0rem;
+			justify-content: center;
+		}
+		.book-img {
+			justify-content: center;
+		}
+		.nav {
+			flex-direction: column;
+		}
+		.nav a {
+			padding: 1rem 0.5rem;
+		}
+	  }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="nav">
+          <a href="">The book series</a>
+          <a href="">Testimonials</a>
+          <a href="">The Author</a>
+          <a href="">Free resources</a>
+        </div>
+        <div class="main">
+          <h2 style="text-align: center;">You dont know Javascript</h2>
+          <div class="book">
+            <div class="book-img">
+              <img src="https://kaul.inf.h-brs.de/we/assets/img/landing-img.png"        width="300px" alt=""/>
+            </div>
+            <div class="book-text">
+			  <div>
+				  <p>Don't just drift through Javascript.</p>
+				  <p>Understand how Javascript works</p>
+				  <p>Start your journey through the bumpy side of Javascript</p>
+				  <button class="btn">Order your copy now</button>
+			  </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+			<div>
+				<p>The first ebook in the book series is absolutely free.</p>
+				<button class="btn">Find out more about this offer</button>
+			</div>
+		</div>
+    </div>
+</body>
+</html>
