@@ -1,28 +1,24 @@
-import { useRecoilState } from "recoil";
 import SubNavbar from "./SubNavbar";
-import { navigationState } from "../../App";
+import { NavLink , useParams } from "react-router-dom";
 
 
-function NavLink(index) {
-
-    const [navState, setNavState] = useRecoilState(navigationState);
-    const active = navState.main === index;
-
+function NavigationLink(index, current) {
+    const active = index == current;
     return (
-        <a 
+        <NavLink to={'/' + index + '/1'} 
         key={index}
-        onClick={() => setNavState({ ...navState, main: index, sub: 1 })} 
         className={`py-1 my-1 sm:my-3 w-12 sm:w-14 cursor-pointer flex items-center justify-center font-semibold 
-        ${active ? 'text-white bg-blue-700 rounded-full italic' : 'text-gray-300 hover:text-gray-100'}`}>{index}</a>
+        ${!active ? "text-gray-300 hover:text-gray-100" : "text-white bg-blue-700 rounded-full italic"}`}>{index}</NavLink >
     )
 }
 
 export default function Navbar() {
 
+    const { main, sub } = useParams();
     const linkItems = [];
 
     for(let i = 1; i <= 13; i++) {
-        linkItems.push(NavLink(i))
+        linkItems.push(NavigationLink(i, main))
     }
 
     return (<>
