@@ -21,7 +21,7 @@ export default function SubNavbar() {
 
     return (<>
         {items.length > 0 &&
-        <div className="h-auto sticky top-0 bg-gray-800 bg-opacity-40 firefox:bg-opacity-40 backdrop-filter backdrop-blur-sm shadow-lg border border-gray-800 w-full">
+        <div className="h-auto sticky top-0 bg-gray-800 bg-opacity-40 firefox:bg-opacity-40 backdrop-filter backdrop-blur-md shadow-lg border border-gray-800 w-full">
             <div className="h-full max-w-6xl mx-auto px-5">
                 <ul className="h-full flex flex-wrap items-center text-md sm:text-lg">
                     {items}

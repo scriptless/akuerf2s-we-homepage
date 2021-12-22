@@ -21,8 +21,8 @@ export default function Navbar() {
         linkItems.push(NavigationLink(i, main))
     }
 
-    return (<>
-        <div className="h-auto sticky top-0 bg-blue-600 shadow-lg w-full">
+    return (<div className="sticky top-0 z-10">
+        <div className="h-auto bg-blue-600 shadow-lg w-full">
             <div className="h-full max-w-6xl mx-auto px-5 flex flex-col-reverse lg:flex-row flex-wrap justify-between lg:items-center">
                 <ul className="flex flex-wrap items-center text-lg mt-2 md:mt-0 md:text-xl py-3 lg:py-0">
                     {linkItems}
@@ -31,6 +31,6 @@ export default function Navbar() {
             </div>
         </div>
         <SubNavbar/>
-        </>
+        </div>
     )
 }
