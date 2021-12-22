@@ -1,0 +1,37 @@
+<strong>
+    Lösen Sie die letzte Aufgabe mit async / await statt Promise.
+</strong>
+<xmp><html>
+    <head></head>
+    <body>
+        <div id="text"></div>
+    </body>
+    <script>
+        let files = [
+            'http://www2.inf.h-brs.de/~akuerf2s/A.txt', 
+            'http://www2.inf.h-brs.de/~akuerf2s/B.txt'
+        ]
+        let element = document.getElementById('text');
+    
+        async function getTexts() {
+            let text1 = await fetch(files[0])
+            text1 = await text1.text()
+            let text2 = await fetch(files[1])
+            text2 = await text2.text()
+            text1 = text1.split('.')
+            text2 = text2.split('.')
+    
+            console.log(text1)
+                console.log(text2)
+    
+                for(let i = 0; i < Math.max(text1.length, text2.length); i++) {
+                    element.append(text1[i])
+                    element.append(text2[i])
+                }
+    
+        }
+    
+        getTexts()
+        
+    </script>
+    </html></xmp>

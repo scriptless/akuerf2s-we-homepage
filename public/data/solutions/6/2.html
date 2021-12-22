@@ -1,0 +1,133 @@
+<strong>Schreiben Sie eine ES6-Klasse Vorrang für Vorrangrelationen, z.B. new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]). Wählen Sie eine Implementierung, die universell gültig, also nicht nur für dieses Beispiel gilt. (Überlegen Sie sich, über welche Properties und Methoden eine solche Klasse verfügen sollte und wie TopSort hier hineinspielt. Topologische Iterierbarkeit und topologischer Generator sind jedoch Gegenstand der nächsten Übungen weiter unten auf diesem Übungsblatt und sollten für die folgenden Aufgaben aufgespart werden.)
+
+    Stellen Sie bei Ihrer Klasse die topologische Iterierbarkeit her (zunächst über das Iterationsprotokoll, ohne Generator, ohne yield).
+    
+    Zum Beispiel soll dadurch folgende for ... of loop möglich werden, mit der die Elemente in topologischer Sortierung durchlaufen werden:</strong>
+
+<pre>
+    class Vorrang {
+        constructor(arrays) {
+          this.arrays = arrays;
+        console.log(arrays);
+      }
+      [Symbol.iterator]() {
+          var index = -1;
+        var data = this.arrays;
+        var sortedArray = [];
+        var visited = [];
+        
+        function getDependencies(object) {
+            const dependencies = []
+            for(const array of data) {
+              if(array[1] === object) {
+                dependencies.push(array[0]);
+            }
+          }
+          return dependencies;
+        }
+        
+        function checkHasAllDependencies(dependencies) {
+            if(dependencies.length > 0) {
+                var hasAllDependencies = true;
+              for(const d of dependencies) {
+                  if(!visited.includes(d)) {
+                    hasAllDependencies = false;
+                }
+              }
+              return hasAllDependencies;
+           } else {
+               return true;
+           }
+        }
+        
+        return {
+            next: () =>  {
+            var value = data[++index];
+            console.log(""+value[0]+" dependencies: " + getDependencies(value[0]));
+            var dependencies = getDependencies(value[0]);
+               var hasAllDepend = checkHasAllDependencies(dependencies);
+            if(hasAllDepend) {
+                visited.push(value);
+            }
+           
+              return { value, done: !(index in data)}
+          }
+        }
+      }
+    }
+    
+    const studentenLeben = new Vorrang([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"]]);
+    
+    for(const next of studentenLeben){
+      console.log( next );
+    }
+</pre>
+<br/>
+<strong>
+    Betten Sie Ihren ECMAScript-Code in eine Webseite ein, so dass man die Vorrangrelation dort eingeben kann. Geben Sie hier die HTML-Seite an:
+</strong>
+<xmp>
+    <html>
+        <body>
+        <input id="eingabe"/>
+        </body>
+        <script type="module">
+        class Vorrang {
+            constructor(arrays) {
+              this.arrays = arrays;
+            console.log(arrays);
+          }
+          [Symbol.iterator]() {
+              var index = -1;
+            var data = this.arrays;
+            var sortedArray = [];
+            var visited = [];
+            
+            function getDependencies(object) {
+                const dependencies = []
+                for(const array of data) {
+                  if(array[1] === object) {
+                    dependencies.push(array[0]);
+                }
+              }
+              return dependencies;
+            }
+            
+            function checkHasAllDependencies(dependencies) {
+                if(dependencies.length > 0) {
+                    var hasAllDependencies = true;
+                  for(const d of dependencies) {
+                      if(!visited.includes(d)) {
+                        hasAllDependencies = false;
+                    }
+                  }
+                  return hasAllDependencies;
+               } else {
+                   return true;
+               }
+            }
+            
+            return {
+                next: () =>  {
+                var value = data[++index];
+                console.log(""+value[0]+" dependencies: " + getDependencies(value[0]));
+                var dependencies = getDependencies(value[0]);
+                   var hasAllDepend = checkHasAllDependencies(dependencies);
+                if(hasAllDepend) {
+                    visited.push(value);
+                }
+               
+                  return { value, done: !(index in data)}
+              }
+            }
+          }
+        }
+        
+        const studentenLeben = new Vorrang([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"]]);
+        
+        for(const next of studentenLeben){
+          console.log( next );
+        }
+        </script>
+        </html> 
+</xmp>

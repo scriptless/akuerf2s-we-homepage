@@ -1,0 +1,64 @@
+<strong>
+    Stellen Sie bei Ihrer Klasse aus der letzten Aufgabe die topologische Iterierbarkeit mittels Generator her.
+
+Wählen Sie eine Implementierung, die universell gültig, also nicht nur für das Beispiel gilt.
+</strong>
+<br/>
+<pre>
+    class Vorrang {
+        constructor(arrays) {
+          this.arrays = arrays;
+        console.log(arrays);
+      }
+      
+    }
+    
+    function* generator(vorrang) {
+          var index = -1;
+        var data = vorrang.arrays;
+        var sortedArray = [];
+        var visited = [];
+        
+        function getDependencies(object) {
+            const dependencies = []
+            for(const array of data) {
+              if(array[1] === object) {
+                dependencies.push(array[0]);
+            }
+          }
+          return dependencies;
+        }
+        
+        function checkHasAllDependencies(dependencies) {
+            if(dependencies.length > 0) {
+                var hasAllDependencies = true;
+              for(const d of dependencies) {
+                  if(!visited.includes(d)) {
+                    hasAllDependencies = false;
+                }
+              }
+              return hasAllDependencies;
+           } else {
+               return true;
+           }
+        }
+        
+        var value = data[++index];
+        console.log(""+value[0]+" dependencies: " + getDependencies(value[0]));
+        var dependencies = getDependencies(value[0]);
+        var hasAllDepend = checkHasAllDependencies(dependencies);
+        if(hasAllDepend) {
+           visited.push(value);
+        }
+           
+        yield value;
+     }
+    
+    const studentenLeben = new Vorrang([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"]]);
+    
+    const gen = generator(studentenLeben);
+    console.assert(gen.next().value, ["schlafen", "studieren"]);
+    console.log(gen.next().value);
+    console.log(gen.next().value);
+    
+</pre>

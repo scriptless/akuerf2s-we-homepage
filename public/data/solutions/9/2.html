@@ -1,0 +1,136 @@
+<strong>Implementieren Sie ein eigenes Balkendiagramm mit HTML, Inline SVG, CSS und JavaScript. Geben Sie die Daten für das Balkendiagramm im JSON-Format vor. Nehmen Sie als Beispieldaten die COVID-19: Fallzahlen in Deutschland. Animieren Sie die Grafik (siehe z.B. Highchart Bar Chart).</strong>
+<iframe src="/data/solutions/9/2_1.html"></iframe>
+<xmp>
+<!DOCTYPE html>
+<meta charset="utf-8">
+          
+<script src="https://d3js.org/d3.v6.js"></script>
+          
+<h2>
+Covid Fallzahlen in Deutschland
+</h2>
+<div id="covid_data"></div>
+
+<script>
+const data = [
+	{
+		"bundesland": "Baden-Württemberg",
+		"anzahl": 847047
+	},
+		{
+		"bundesland": "Bayern",
+		"anzahl": 1153632	
+	},
+		{
+		"bundesland": "Berlin",
+		"anzahl": 279530	
+	},
+		{
+		"bundesland": "Brandenburg",
+		"anzahl": 182587	
+	},
+		{
+		"bundesland": "Bremen",
+		"anzahl": 40104
+	},
+		{
+		"bundesland": "Hamburg",
+		"anzahl": 115250	
+	},
+		{
+		"bundesland": "Hessen",
+		"anzahl": 419559	
+	},
+		{
+		"bundesland": "Mecklenburg-Vorpommern",
+		"anzahl": 73688
+	},
+		{
+		"bundesland": "Niedersachsen",
+		"anzahl": 381715	
+	},
+		{
+		"bundesland": "Nordrhein-Westfalen",
+		"anzahl": 1191138	
+	},
+		{
+		"bundesland": "Rheinland-Pfalz",
+		"anzahl": 237282
+	},
+		{
+		"bundesland": "Saarland",
+		"anzahl": 62542
+	},
+		{
+		"bundesland": "Sachsen",
+		"anzahl": 513069	
+	},
+		{
+		"bundesland": "Sachsen-Anhalt",
+		"anzahl": 162416
+	},
+		{
+		"bundesland": "Schleswig-Holstein",
+		"anzahl": 98142
+	},
+		{
+		"bundesland": "Thüringen",
+		"anzahl": 219507
+	},
+];
+
+// set the dimensions and margins of the graph
+const margin = {top: 10, right: 30, bottom: 90, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+const svg = d3.select("#covid_data")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+
+// X axis
+const x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(data.map(d => d["bundesland"]))
+  .padding(0.1);
+svg.append("g")
+  .attr("transform", `translate(0,${height})`)
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .attr("transform", "translate(-10,0)rotate(-45)")
+    .style("text-anchor", "end");
+
+// Add Y axis
+const y = d3.scaleLinear()
+  .domain([0, 1500000])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+// Bars
+svg.selectAll("mybar")
+  .data(data)
+  .join("rect")
+    .attr("x", d => x(d["bundesland"]))
+    .attr("width", x.bandwidth())
+    .attr("fill", "#69b3a2")
+    // no bar at the beginning thus:
+    .attr("height", d => height - y(0)) // always equal to 0
+    .attr("y", d => y(0))
+
+// Animation
+svg.selectAll("rect")
+  .transition()
+  .duration(800)
+  .attr("y", d => y(d["anzahl"]))
+  .attr("height", d => height - y(d["anzahl"]))
+  .delay((d,i) => {console.log(i); return i*100})
+
+
+</script>
+</xmp>

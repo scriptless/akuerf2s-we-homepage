@@ -1,0 +1,28 @@
+<html>
+<head></head>
+<body>
+    <div id="text"></div>
+</body>
+<script>
+    let files = [
+        'http://www2.inf.h-brs.de/~akuerf2s/A.txt', 
+        'http://www2.inf.h-brs.de/~akuerf2s/B.txt'
+    ]
+    let element = document.getElementById('text');
+    Promise.all(files.map(u => fetch(u)))
+    .then(responses =>
+        Promise.all(responses.map(res => res.text())))
+        .then(texts => {
+            let text1 = texts[0].split('.')
+            let text2 = texts[1].split('.')
+            console.log(text1)
+            console.log(text2)
+
+            for(let i = 0; i < Math.max(text1.length, text2.length); i++) {
+                element.append(text1[i])
+                element.append(text2[i])
+            }
+        })
+    
+</script>
+</html>
