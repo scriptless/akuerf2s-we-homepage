@@ -1,30 +1,5 @@
 <strong>Codieren Sie eine HTML-Datei mit Inline SVG, so dass sich folgendes Aussehen ergibt: https://kaul.inf.h-brs.de/we/assets/img/use_the_platform.png
     Fügen Sie als Hover-Effekt eine CSS-Animation hinzu, die die Größe der SVG-Grafik verdoppelt, wenn man mit dem Cursor über die Grafik geht.
 </strong>
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    @keyframes use {
-      0%   {transform: scale(1);}
-      100% {transform: scale(2);}
-    }
-    
-    #use:hover {
-      animation: use 2s linear 0s 1 alternate;
-    }
-  </style>
-</head>
-<body>
-<svg id="use" viewBox="0 0 100 100">
-  <rect x="0" y="0" width="50" height="50"
-  style="fill:#cb798d"/>
-  <text x="5" y="10" style="font-size:10px;fill:white;">Use</text>
-  <line x1="5" y1="15" x2="45" y2="15" stroke="white" stroke-width="0.5px"/>
-  <text x="5" y="25" style="font-size:10px;fill:white;">the</text>
-  <line x1="5" y1="30" x2="45" y2="30" stroke="white" stroke-width="0.5px"/>
-  <text x="5" y="40" style="font-size:10px;fill:white;">Platform</text>
-  <line x1="5" y1="45" x2="45" y2="45" stroke="white" stroke-width="0.5px"/>
-</svg>
-</body>
-</html>
+<iframe src="/data/solutions/9/1_1.html"></iframe>
+<iframe class="raw" onload="makeRaw(this)" src="/data/solutions/9/1_1.html"></iframe>

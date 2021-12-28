@@ -3,9 +3,12 @@ class Vorrang {
       this.arrays = arrays;
     console.log(arrays);
   }
-  [Symbol.iterator]() {
+  
+}
+
+function* generator(vorrang) {
       var index = -1;
-    var data = this.arrays;
+    var data = vorrang.arrays;
     var sortedArray = [];
     var visited = [];
     
@@ -33,24 +36,20 @@ class Vorrang {
        }
     }
     
-    return {
-        next: () =>  {
-        var value = data[++index];
-        console.log(""+value[0]+" dependencies: " + getDependencies(value[0]));
-        var dependencies = getDependencies(value[0]);
-           var hasAllDepend = checkHasAllDependencies(dependencies);
-        if(hasAllDepend) {
-            visited.push(value);
-        }
-       
-          return { value, done: !(index in data)}
-      }
+    var value = data[++index];
+    console.log(""+value[0]+" dependencies: " + getDependencies(value[0]));
+    var dependencies = getDependencies(value[0]);
+    var hasAllDepend = checkHasAllDependencies(dependencies);
+    if(hasAllDepend) {
+       visited.push(value);
     }
-  }
-}
+       
+    yield value;
+ }
 
 const studentenLeben = new Vorrang([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"]]);
 
-for(const next of studentenLeben){
-  console.log( next );
-}
+const gen = generator(studentenLeben);
+console.assert(gen.next().value, ["schlafen", "studieren"]);
+console.log(gen.next().value);
+console.log(gen.next().value);

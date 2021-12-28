@@ -1,0 +1,36 @@
+function deepCopy(struct) {
+	let result;
+    if (struct instanceof Array) {
+    	result = []
+    } else {
+    	result = {}
+    }
+		for (const [k, v] of Object.entries(struct)) {
+    		if(typeof v === "object") {
+        	result[k] = deepCopy(v)
+        } else {
+        	result[k] = v;
+        }
+		}
+		return result;
+}
+
+let testData = {
+	name: "Alex",
+  address: {
+  	street: "Ellerstreet"
+  },
+  data: {
+  	data1: ["test", {
+    	1: "one",
+      2: "two"
+    }]
+  }
+}
+
+let test1 = deepCopy(testData);
+console.log(test1);
+
+console.assert(true, test1.name === testData.name)
+console.assert(true, test1.address === testData.address)
+console.assert(true, test1.data === testData.data)

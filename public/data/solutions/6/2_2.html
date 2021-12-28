@@ -1,49 +1,54 @@
+<html>
+<body>
+<input id="eingabe"/>
+</body>
+<script type="module">
 class Vorrang {
-    constructor(arrays) {
-      this.arrays = arrays;
+	constructor(arrays) {
+  	this.arrays = arrays;
     console.log(arrays);
   }
   [Symbol.iterator]() {
-      var index = -1;
+  	var index = -1;
     var data = this.arrays;
     var sortedArray = [];
     var visited = [];
     
     function getDependencies(object) {
-        const dependencies = []
-        for(const array of data) {
-          if(array[1] === object) {
-            dependencies.push(array[0]);
+    	const dependencies = []
+    	for(const array of data) {
+      	if(array[1] === object) {
+        	dependencies.push(array[0]);
         }
       }
       return dependencies;
     }
     
     function checkHasAllDependencies(dependencies) {
-        if(dependencies.length > 0) {
-            var hasAllDependencies = true;
+    	if(dependencies.length > 0) {
+        	var hasAllDependencies = true;
           for(const d of dependencies) {
-              if(!visited.includes(d)) {
-                hasAllDependencies = false;
+          	if(!visited.includes(d)) {
+            	hasAllDependencies = false;
             }
           }
           return hasAllDependencies;
        } else {
-           return true;
+       	return true;
        }
     }
     
     return {
-        next: () =>  {
+    	next: () =>  {
         var value = data[++index];
         console.log(""+value[0]+" dependencies: " + getDependencies(value[0]));
         var dependencies = getDependencies(value[0]);
-           var hasAllDepend = checkHasAllDependencies(dependencies);
+       	var hasAllDepend = checkHasAllDependencies(dependencies);
         if(hasAllDepend) {
-            visited.push(value);
+        	visited.push(value);
         }
        
-          return { value, done: !(index in data)}
+      	return { value, done: !(index in data)}
       }
     }
   }
@@ -54,3 +59,5 @@ const studentenLeben = new Vorrang([["schlafen", "studieren"], ["essen", "studie
 for(const next of studentenLeben){
   console.log( next );
 }
+</script>
+</html>
