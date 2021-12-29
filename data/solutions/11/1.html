@@ -1,0 +1,53 @@
+<strong>
+    Schreiben Sie eine Vue.js Single File Component mit einem Text-Eingabefeld und 3 Ausgabefeldern, in denen man während des Tippens sehen kann, (a) wie viele Buchstaben (b) wie viele Leerzeichen und (c) wie viele Worte man in das Text-Eingabefeld bereits eingegeben hat.
+
+Betten Sie Ihre Komponente in eine Webseite zweimal ein und testen Sie, ob beide Komponenten unabhängig voneinander sind.
+</strong>
+<br/>
+<xmp>
+    <template>
+        <div>
+          <input type="text" v-model="counterInput" />
+          <p>Anzahl Buchstaben: {{ counterInput.split(" ").join("").length }}</p>
+          <p>Anzahl Leerzeichen: {{ counterInput.split(" ").length - 1 }}</p>
+          <p>
+            Anzahl Wörter: {{ counterInput ? counterInput.split(" ").length : 0 }}
+          </p>
+        </div>
+      </template>
+      
+      <script>
+      export default {
+        data: function () {
+          return {
+            counterInput: "",
+          };
+        },
+      };
+      </script>
+</xmp>
+<br/>
+<strong>
+    Geben Sie die Webseite, auf der Sie Ihre Komponente mehrfach testen, hier ein:
+</strong>
+<br/>
+<xmp>
+    <template>
+        <div id="app">
+          <Counter />
+          <Counter />
+          <Counter />
+        </div>
+      </template>
+      
+      <script>
+      import Counter from "./components/Counter.vue";
+      
+      export default {
+        components: {
+          Counter,
+        },
+      };
+      </script>
+</xmp>
+

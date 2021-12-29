@@ -1,0 +1,76 @@
+<strong>
+    Schreiben Sie eine möglichst flexible Vue.js Single File Component für Menüs und wenden Sie diese in derselben Webseite zweimal an, einmal horizontal, das andere Mal vertikal.
+</strong>
+<br/>
+<xmp>
+     <template>
+        <div id="app">
+          <Menu :isHorizontal="true" />
+          <br />
+          <Menu :isHorizontal="false" />
+        </div>
+      </template>
+      
+      <script>
+      import Menu from "./components/Menu.vue";
+      
+      export default {
+        components: {
+          Menu,
+        },
+      };
+      </script>
+      
+      // Menu Component
+      <template>
+        <ul id="nav" v-bind:class="{ vertical: !isHorizontal }">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">About Us</a>
+          </li>
+          <li>
+            <a href="#">Services</a>
+          </li>
+        </ul>
+      </template>
+      
+      <script>
+      export default {
+        props: ["isHorizontal"],
+      };
+      </script>
+      
+      <style scoped>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      .vertical {
+        flex-direction: column;
+      }
+      #nav {
+        list-style: none;
+        margin: 0;
+        background-color: #f0f0f0;
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+      }
+      #nav li {
+        float: left;
+      }
+      #nav a {
+        display: block;
+        text-decoration: none;
+        padding: 0 20px;
+        color: #777;
+      }
+      #nav a:hover {
+        color: black;
+      }
+      </style>
+      
+</xmp>

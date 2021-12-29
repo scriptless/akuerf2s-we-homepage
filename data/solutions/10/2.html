@@ -1,0 +1,45 @@
+<strong>
+    Gegeben sei folgendes fehlerbehaftete JavaScript-Programm. Ergänzen Sie dieses um möglichst viele Typisierungen und übersetzen Sie es in ein TypeScript-Programm.
+    Was ist der Fehler in dem gegebenen JavaScript-Code?
+</strong>
+<br/>
+Es wird die add Funktion mit booleans aufgerufen, booleans werden dann in entweder 0 oder 1 implizit umgewandelt
+<br/>
+<br/>
+<strong>
+    Geben Sie hier Ihren TypeScript-Code ein:
+</strong>
+<br/>
+<pre>
+const add = (x: number | boolean, y: number | boolean) : number | boolean => x+y;
+const equals = (x: number | boolean, y: number | boolean) : number | boolean => x===y;
+
+console.log( add(1,2) );
+console.log( add(true, true ) );
+console.log( add(true, false ) );
+let x: number = y: number = 1;
+console.log( add(equals(x,y), equals(y,x)) );
+</pre>
+<br/>
+<strong>
+    Welche Fehler meldet TypeScript?
+</strong>
+<br/>
+Operator '+' cannot be applied to types 'number | boolean' and 'number | boolean'.(2365)
+und
+Cannot find name 'y'.(2304)
+<br/>
+<br/>
+<strong>
+    Geben Sie weitere Beispiele an, wie TypeScript bei der Fehlersuche helfen kann:
+</strong>
+<pre>
+Wenn der return-Typ nicht String ist sondern eine Zahl:
+Type 'number' is not assignable to type 'string'.(2322)
+
+Bsp:
+function itShouldReturnString(zahl: number): string {
+    return zahl;
+}
+</pre>
+

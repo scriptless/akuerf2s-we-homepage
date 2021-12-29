@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html {
+      background-color: #b2d6d1;
+      font-family: Roboto;
+    }
+	body {
+	  width: 750px;
+	}
+    .panel {
+      background-color: #fafafa;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .text-center {
+      text-align: center;
+    }
+    input[type=text], input[type=number], select {
+      padding: 5px;
+      border: 1px solid #d0d0d0;
+    }
+    select {
+      background-color: #f0f0f0
+    }
+    .input-label {
+      width: 350px;
+      margin-right: 20px;
+      display: inline-block;
+      text-align: right;
+    }
+    .form-group {
+	  display: inline-flex;
+      padding-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="text-center">
+    <h1>Survey Form</h1>
+  </div>
+  <div class="panel">
+    <p class="text-center">Let us know how we can improve freeCodeCamp</p>
+    <div class="form-group">
+      <label class="input-label" for="Name">* Name:</label>
+      <input type="text" name="Name" id="Name" placeholder="Enter your name"/>
+    </div>
+    <div class="form-group">
+      <label class="input-label" for="Email">* Email:</label>
+      <input type="text" name="Email" id="Email" placeholder="Enter your Email"/>
+    </div>
+    <div class="form-group">
+      <label class="input-label" for="Age">* Age:</label>
+      <input type="number" name="Age" id="Age" placeholder="Enter your Age"/>
+    </div>
+    <div class="form-group">
+      <label class="input-label" for="Role">Which option best describes your current role?</label>
+      <select name="Role" id="Role">
+        <option value="Student">Student</option>
+        <option value="Schüler">Schüler</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="input-label" for="fav_language">* How likely is that you would recommend freeCodeCamp to a friend?</label>
+	  <div>
+		  <input type="radio" id="Definitely" name="recommend" value="Definitely">
+		  <label for="Definitely">Definitely</label><br>
+		  <input type="radio" id="Maybe" name="recommend" value="Maybe">
+		  <label for="Maybe">Maybe</label><br>
+		  <input type="radio" id="Not_sure" name="recommend" value="Not_sure">
+		  <label for="Not_sure">Not sure</label>
+	  </div>
+    </div>
+    <div class="form-group">
+      <label class="input-label" for="FCC">What do you like most in FCC?</label>
+      <select name="FCC" id="FCC">
+        <option value="">Select an option</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="input-label" for="fav_language">Things that should be improved in the future (Check all that apply):</label>
+	  <div>
+		  <input type="checkbox" id="frontend" name="future" value="frontend">
+		  <label for="frontend">Front-end Projects</label><br>
+		  <input type="checkbox" id="backend" name="future" value="backend">
+		  <label for="backend">Back-end Projects</label><br>
+		  <input type="checkbox" id="datavis" name="future" value="datavis">
+		  <label for="datavis">Data Visualization</label>
+	  </div>
+    </div>
+  </div>
+</body>
+</html>

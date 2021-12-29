@@ -1,0 +1,25 @@
+<strong>Sie bekommen im Browser den HTTP Status Code 200. Was bedeutet das?</strong>
+<br/>
+Code 200 bedeutet OK, dass heißt, das die Anfrage erfolgreich war.
+<br/>
+<br/>
+<strong>Sie bekommen im Browser den HTTP Status Code 301. Was hat das zu bedeuten?</strong>
+<br/>
+Code 301 bedeutet permanente Weiterleitung, dass heißt, das eine URL dauerhaft umgezogen ist.
+<br/>
+<br/>
+<strong>Sie bekommen im Browser den HTTP Status Code 400. Was hat das zu bedeuten? Was können Sie dagegen tun?</strong>
+<br/>
+Code 400 bedeutet, dass der Server die Anfrage nicht bearbeiten konnte, weil ein clientseitiger Fehler aufgetreten ist. Man müsste die Anfrage so modifizieren, dass sie den Anforderungen des Servers entsprechen.
+<br/>
+<br/>
+<strong>Sie bekommen im Browser den HTTP Status Code 403. Was hat das zu bedeuten? Was können Sie dagegen tun?
+</strong>
+    <br/>
+Code 403 bedeutet, dass der Server die Anfrage verstanden hat, aber nicht zulässt, dem Client wird die Webseite verwehrt. Der Client müsste die Rechte haben, um diesen Fehler zu umgehen.
+<br/>
+<br/>
+<strong>In einer Webanwendung benötigen Sie eine OPTIONS-Anfrage, die die Optionen des Servers vor dem eigentlichen Zugriff erfragen soll. Aus Performanzgründen soll die Abfrage jedoch cacheable sein. Wie könnten Sie dafür eine Lösung angehen?
+</strong>
+    <br/>
+Man kann den Header "Access-Control-Max-Age" angeben, um die Cache-Dauer selber zu bestimmen. Firefox limitiert die maximale Cachezeit auf 24 Stunden, Chromium Browser haben nur eine maximale Zeit von 2 Stunden.

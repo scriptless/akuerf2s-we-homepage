@@ -1,0 +1,60 @@
+class Vorrang {
+    constructor(arrays) {
+      this.arrays = arrays;
+    console.log(arrays);
+  }
+  
+}
+
+function* generator(vorrang) {
+      var index = -1;
+    var data = vorrang.arrays;
+    var sortedArray = [];
+    var visited = [];
+    
+    function getDependencies(object) {
+        const dependencies = []
+        for(const array of data) {
+          if(array[1] === object) {
+            dependencies.push(array[0]);
+        }
+      }
+      return dependencies;
+    }
+    
+    function checkHasAllDependencies(dependencies) {
+        if(dependencies.length > 0) {
+            var hasAllDependencies = true;
+          for(const d of dependencies) {
+              if(!visited.includes(d)) {
+                hasAllDependencies = false;
+            }
+          }
+          return hasAllDependencies;
+       } else {
+           return true;
+       }
+    }
+    
+    var value = data[++index];
+    console.log(""+value[0]+" dependencies: " + getDependencies(value[0]));
+    var dependencies = getDependencies(value[0]);
+    var hasAllDepend = checkHasAllDependencies(dependencies);
+    if(hasAllDepend) {
+       visited.push(value);
+    }
+       
+    yield value;
+ }
+
+const studentenLeben = new Vorrang([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"]]);
+
+let validator = {
+    get: function(obj, prop, value) {
+      if(prop === 'next') {
+        throw new TypeError("next should be a function");
+    }
+    return true;
+  }
+}
+const gen = new Proxy(generator(studentenLeben), validator);

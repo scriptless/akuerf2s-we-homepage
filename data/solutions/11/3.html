@@ -1,0 +1,378 @@
+<strong>
+    Schreiben Sie Ihren WWW-Navigator als SPA in Vue.js mit Vue Router und/oder mit Vuex als State Manager.
+</strong>
+<br/>
+<strong>
+    Dokumentieren Sie Ihren Entscheidungsprozess: In welche Komponenten wollen Sie Ihre App zerlegen? Wie soll das State Management implementiert werden?
+</strong>
+<br/>
+Alle Navigations Menus, sowie der Content in der Mitte und rechts die additionals infos befinden sich im components Ordner, die Page.vue ist die SPA Hauptseite und verwendet die Components.
+Das Statemanagement befindet sich in der Page.vue, die Children Components (z.b. das Submenu) emitten dann die neue Submenu-Seite an das Parent Component (Page.vue), wenn jemand auf den Menulink klickt. Im Page.vue wird dann das State geupdated.
+<br/>
+<br/>
+<strong>
+    Geben Sie die Inhalte aller Dateien (ohne node_modules) Ihrer Lösung inkl. JS-Quelltext hintereinander ein. Schreiben Sie vor jede Datei deren Dateiname:
+</strong>
+<xmp>
+    // components/ContentText.vue
+<script>
+export default {
+  props: ["obermenu", "untermenu", "info"],
+  data: function () {
+    return {
+      isObermenu: this.obermenu,
+      isUntermenu: this.untermenu,
+      getInfo: this.info,
+    };
+  },
+  methods: {
+    getContent: function () {
+      return this.isObermenu + " swag " + this.isUntermenu;
+      /*const section = info.filter((i) => i.section === ober)[0];
+      const infoText = section.subsections.filter((i) => i.section === unter)[0]
+        .info;
+      return infoText;*/
+    },
+  },
+  mounted() {
+    console.log("hi: " + this.isObermenu + " - " + this.isUntermenu);
+  },
+};
+</script>
+
+<template>
+  <div id="content-container">
+    <p>{{ getContent() }}</p>
+  </div>
+</template>
+
+<style scoped>
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+#content-container {
+  background-color: #94d2f3;
+  width: 100%;
+  height: 100vh;
+}
+</style>
+
+// components/OberMenu.vue
+<script>
+export default {
+  methods: {
+    clickMenu: function (page) {
+      this.$emit("changedOberMenu", page);
+      console.log(page);
+    },
+  },
+};
+</script>
+
+<template>
+  <ul id="nav">
+    <li>
+      <a href="#" @click="clickMenu('HTML')">HTML</a>
+    </li>
+    <li>
+      <a href="#" @click="clickMenu('CSS')">CSS</a>
+    </li>
+    <li>
+      <a href="#" @click="clickMenu('JavaScript')">JavaScript</a>
+    </li>
+    <li>
+      <a href="#" @click="clickMenu('Other')">Other</a>
+    </li>
+  </ul>
+</template>
+
+<style scoped>
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+.vertical {
+  flex-direction: column;
+}
+#nav {
+  list-style: none;
+  margin: 0;
+  background-color: #c24f4f;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+#nav li {
+  float: left;
+}
+#nav a {
+  display: block;
+  text-decoration: none;
+  padding: 0 20px;
+  color: white;
+}
+#nav a:hover {
+  color: black;
+}
+</style>
+
+// components/UnterMenu.vue
+<template>
+  <div>
+    <ul v-if="obermenu === 'HTML'" id="nav">
+      <li>
+        <a href="#" @click="clickMenu(1)">div</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(2)">head</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(3)">body</a>
+      </li>
+    </ul>
+    <ul v-if="obermenu === 'CSS'" id="nav">
+      <li>
+        <a href="#" @click="clickMenu(1)">margin</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(2)">flexbox</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(3)">grid</a>
+      </li>
+    </ul>
+    <ul v-if="obermenu === 'JavaScript'" id="nav">
+      <li>
+        <a href="#" @click="clickMenu(1)">EcmaScript</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(2)">TypeScript</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(3)">fetch</a>
+      </li>
+    </ul>
+    <ul v-if="obermenu === 'Other'" id="nav">
+      <li>
+        <a href="#" @click="clickMenu(1)">1</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(2)">2</a>
+      </li>
+      <li>
+        <a href="#" @click="clickMenu(3)">3</a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["obermenu", "untermenu"],
+  mounted() {
+    console.log("mounted with obermenu: " + this.obermenu);
+  },
+  methods: {
+    clickMenu: function (page) {
+      this.$emit("changedUnterMenu", page);
+      console.log(page);
+    },
+  },
+};
+</script>
+
+<style scoped>
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+#nav {
+  list-style: none;
+  margin: 0;
+  background-color: #c28283;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  flex-direction: column;
+  height: 100%;
+}
+#nav li {
+  float: left;
+}
+#nav a {
+  display: block;
+  text-decoration: none;
+  padding: 0 20px;
+  color: white;
+}
+#nav a:hover {
+  color: black;
+}
+</style>
+
+//components/AdditionalInfo.vue
+<template>
+  <div id="info"></div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style scoped>
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+#info {
+  margin: 0;
+  background-color: #c28283;
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  flex-direction: column;
+  width: 10%;
+  height: 100%;
+}
+</style>
+
+//Page.vue
+<script>
+import OberMenu from "./components/OberMenu.vue";
+import UnterMenu from "./components/UnterMenu.vue";
+import AdditionalInfo from "./components/AdditionalInfo.vue";
+import ContentText from "./components/ContentText.vue";
+
+export default {
+  components: {
+    OberMenu,
+    UnterMenu,
+    AdditionalInfo,
+    ContentText,
+  },
+  props: ["info"],
+  data: function () {
+    return {
+      obermenu: "HTML",
+      untermenu: "1",
+      info1: this.info,
+    };
+  },
+  methods: {
+    updateOberMenu: function (page) {
+      this.obermenu = page;
+      this.untermenu = 1;
+      console.log("success changed to " + this.obermenu);
+    },
+    updateUnterMenu: function (page) {
+      this.untermenu = page;
+      console.log("success changed to " + this.untermenu);
+    },
+  },
+};
+</script>
+
+<template>
+  <div>
+    <OberMenu v-on:changedOberMenu="updateOberMenu" />
+    {{ obermenu }}
+    {{ untermenu }}
+    <div class="content">
+      <UnterMenu
+        v-on:changedUnterMenu="updateUnterMenu"
+        :obermenu="obermenu"
+        :untermenu="untermenu"
+      />
+      <ContentText :obermenu="obermenu" :untermenu="untermenu" :info="info1" />
+      <AdditionalInfo :obermenu="obermenu" :untermenu="untermenu" />
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
+
+//App.vue
+<script>
+import Page from "./Page.vue";
+
+export default {
+  data: function () {
+    return {
+      info: [
+        {
+          section: "HTML",
+          subsections: [
+            {
+              section: "1",
+              info: "Lorem ipsum",
+            },
+            {
+              section: "2",
+              info: "Lorem ipsum2",
+            },
+          ],
+        },
+        {
+          section: "CSS",
+          subsections: [
+            {
+              section: "1",
+              info: "Lcorem ipsum",
+            },
+            {
+              section: "2",
+              info: "Locrem ipsum2",
+            },
+          ],
+        },
+        {
+          section: "JavaScript",
+          subsections: [
+            {
+              section: "1",
+              info: "JLorem ipsum",
+            },
+            {
+              section: "2",
+              info: "JLorem ipsum2",
+            },
+          ],
+        },
+        {
+          section: "Other",
+          subsections: [
+            {
+              section: "1",
+              info: "oorem ipsum",
+            },
+            {
+              section: "2",
+              info: "Loorem ipsum2",
+            },
+          ],
+        },
+      ],
+    };
+  },
+  components: {
+    Page,
+  },
+};
+</script>
+
+<template>
+  <div id="app">
+    <Page :info="info" />
+  </div>
+</template>
+</xmp>

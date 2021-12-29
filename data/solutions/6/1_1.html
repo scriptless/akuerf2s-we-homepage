@@ -1,0 +1,42 @@
+<html>
+  <style>
+    #check {
+      height: 2rem;
+    }
+  </style>
+  <body>
+  <textarea id="check"></textarea>
+  </body>
+  <script type="module">
+  const klammerArray = []
+  const checkArea = document.getElementById("check")
+  checkArea.addEventListener("keypress", checkInput)
+  
+  function checkInput(e) {
+  	const input = String.fromCharCode(e.key.charCodeAt(0));
+    console.log(e.key.charCodeAt(0))
+    if(input === "(" || input === "[" || input === "{") {
+    	klammerArray.push(input);
+    }
+    if(input === ")" || input === "]" || input === "}") {
+    	const lastItem = klammerArray.at(-1);
+      if(
+      (input === ")" && lastItem === "(")
+      || (input === "]" && lastItem === "[")
+      || (input === "}" && lastItem === "{")){
+      	klammerArray.pop();
+      } else {
+      	klammerArray.push(input);
+      }
+    }
+    if(klammerArray.length > 0) {
+    	checkArea.style.backgroundColor = "red";
+    } else {
+       checkArea.style.backgroundColor = "white";
+    }
+    console.log(klammerArray);
+  }
+  
+	</script>
+</html>
+
