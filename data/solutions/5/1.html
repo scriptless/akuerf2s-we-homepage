@@ -5,3 +5,60 @@ Dabei ist zu beachten, dass Browser, um potenzielle Sicherheitsbedrohungen wie S
 </strong>
 <iframe src="/data/solutions/5/1_1.html"></iframe>
 <iframe class="raw" onload="makeRaw(this)" src="/data/solutions/5/1_1.html"></iframe>
+<xmp>
+    <html>
+  <style>
+    #start {
+      height: 5rem;
+      width: 5rem;
+      background-color: red;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+  <table id="performance-table">
+    <tr>
+      <th>innerHTML</th>
+      <th>innerText</th>
+      <th>textContent</th>
+      <th>outerHTML</th>
+    </tr>
+    <tr>
+      <td id="0"></td>
+      <td id="1"></td>
+      <td id="2"></td>
+      <td id="3"></td>
+    </tr>
+  </table>
+  <div id="start">
+
+  </div>
+  <script>
+  	const element = document.getElementById("start")
+    const text = "<p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p><p>Hallo</p>"
+    
+    let startTime = performance.now()
+    element.innerHTML = text
+    let result = performance.now() - startTime
+    document.getElementById("0").textContent = result
+    
+    startTime = performance.now()
+    element.innerText = text
+    result = performance.now() - startTime
+    document.getElementById("1").textContent = result
+    
+    startTime = performance.now()
+    element.textContent = text
+    result = performance.now() - startTime
+    document.getElementById("2").textContent = result
+    
+    startTime = performance.now()
+    element.outerHTML = text
+    result = performance.now() - startTime
+    document.getElementById("3").textContent = result
+  </script>
+</html>
+
+</xmp>
