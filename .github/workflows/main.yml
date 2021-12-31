@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: false
-      PUBLIC_URL: https://scriptless.github.io/akuerf2s-we-homepage
     strategy:
       matrix:
         node-version: [16.x]

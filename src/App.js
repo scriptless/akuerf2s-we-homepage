@@ -8,7 +8,7 @@ function App() {
                 <Route exact path="/" element={
                     <Navigate replace to="/1/1" />
                 }/>
-                <Route path=":main/:sub" element={<AppLayout/>}/>
+                <Route path="/:main/:sub" element={<AppLayout/>}/>
             </Routes>
         </BrowserRouter>
     );
