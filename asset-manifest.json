@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "https://scriptless.github.io/akuerf2s-we-homepage/static/css/main.d4494a90.css",
-    "main.js": "https://scriptless.github.io/akuerf2s-we-homepage/static/js/main.649ddebf.js",
-    "static/media/background.jpg": "https://scriptless.github.io/akuerf2s-we-homepage/static/media/background.94a2fa22b9bd1e6a6596.jpg",
-    "index.html": "https://scriptless.github.io/akuerf2s-we-homepage/index.html",
-    "main.d4494a90.css.map": "https://scriptless.github.io/akuerf2s-we-homepage/static/css/main.d4494a90.css.map",
-    "main.649ddebf.js.map": "https://scriptless.github.io/akuerf2s-we-homepage/static/js/main.649ddebf.js.map"
+    "main.css": "/akuerf2s-we-homepage/static/css/main.ce0834bf.css",
+    "main.js": "/akuerf2s-we-homepage/static/js/main.477cf6e0.js",
+    "static/media/background.jpg": "/akuerf2s-we-homepage/static/media/background.94a2fa22b9bd1e6a6596.jpg",
+    "index.html": "/akuerf2s-we-homepage/index.html",
+    "main.ce0834bf.css.map": "/akuerf2s-we-homepage/static/css/main.ce0834bf.css.map",
+    "main.477cf6e0.js.map": "/akuerf2s-we-homepage/static/js/main.477cf6e0.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4494a90.css",
-    "static/js/main.649ddebf.js"
+    "static/css/main.ce0834bf.css",
+    "static/js/main.477cf6e0.js"
   ]
 }
