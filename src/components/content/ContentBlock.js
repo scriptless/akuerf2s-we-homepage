@@ -25,7 +25,7 @@ export default function ContentBlock() {
 
 
     async function getText(mainParam, subParam) {
-        const text = await (await fetch("../data/solutions/" + mainParam + "/" + subParam + ".html")).text()
+        const text = await (await fetch(process.env.PUBLIC_URL + "/data/solutions/" + mainParam + "/" + subParam + ".html")).text()
         console.log("get text: " + mainParam, subParam)
         return text;
     }
