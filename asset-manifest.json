@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/akuerf2s-we-homepage/static/css/main.fe5510ec.css",
-    "main.js": "/akuerf2s-we-homepage/static/js/main.44079821.js",
-    "static/media/background.jpg": "/akuerf2s-we-homepage/static/media/background.94a2fa22b9bd1e6a6596.jpg",
-    "index.html": "/akuerf2s-we-homepage/index.html",
-    "main.fe5510ec.css.map": "/akuerf2s-we-homepage/static/css/main.fe5510ec.css.map",
-    "main.44079821.js.map": "/akuerf2s-we-homepage/static/js/main.44079821.js.map"
+    "main.css": "/static/css/main.b4a6fecd.css",
+    "main.js": "/static/js/main.80ae4b59.js",
+    "static/media/background.jpg": "/static/media/background.94a2fa22b9bd1e6a6596.jpg",
+    "index.html": "/index.html",
+    "main.b4a6fecd.css.map": "/static/css/main.b4a6fecd.css.map",
+    "main.80ae4b59.js.map": "/static/js/main.80ae4b59.js.map"
   },
   "entrypoints": [
-    "static/css/main.fe5510ec.css",
-    "static/js/main.44079821.js"
+    "static/css/main.b4a6fecd.css",
+    "static/js/main.80ae4b59.js"
   ]
 }
