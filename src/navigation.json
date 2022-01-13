@@ -89,5 +89,13 @@
             { "id": 2, "title": "Vue Menu-Komponente" },
             { "id": 3, "title": "Vue WWW-Navigator" }
         ] 
+    },
+    { 
+        "id": 12,
+        "subs": [
+            { "id": 1, "title": "Registrierung mit PHP" },
+            { "id": 2, "title": "Login mit PHP" },
+            { "id": 3, "title": "Content Editor mit PHP" }
+        ] 
     }
 ]
