@@ -1,0 +1,203 @@
+<?php
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);*/
+//echo json_encode($_POST, JSON_UNESCAPED_UNICODE);
+define("POST_DIR", "posts/");
+
+$error_msg = '';
+$success_msg = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(!empty($_POST["delete"]) && !empty($_POST["id"])) {
+        deletePost($_POST["id"]);
+        $success_msg = "Post wurde gelöscht.";
+    } else if(!empty($_POST["title"]) && !empty($_POST["text"]) && !empty($_POST["topic"])) {
+        if(!empty($_POST["edit-mode"])) {
+            editPost($_POST["edit-mode"], $_POST["title"], $_POST["text"], $_POST["topic"]);
+            $success_msg = "Änderungen gespeichert.";
+        } else {
+            createPost($_POST["title"], $_POST["text"], $_POST["topic"]);
+            $success_msg = "Post erfolgreich erstellt.";
+        }
+    } else {
+        $error_msg = "Bitte fülle alle Felder aus.";
+    }
+}
+
+class Post {
+    public $id = '';
+    public $title = '';
+    public $text = '';
+}
+
+function editPost($id, $title, $text, $topic) {
+    $raw_data = $id . ';' . $title . ';' . $text . ';' . $topic;
+    $filename = POST_DIR . $id . '.txt';
+    if (file_exists($filename)) {
+        unlink($filename);
+    }
+    file_put_contents($filename, $raw_data);
+}
+
+function createPost($title, $text, $topic) {
+    $id = time() . '_' .uniqid();
+    $raw_data = $id . ';' . $title . ';' . $text . ';' . $topic;
+    $filename = POST_DIR . $id . '.txt';
+    file_put_contents($filename, $raw_data);
+}
+
+function deletePost($id) {
+    $filename = POST_DIR . $id . '.txt';
+    unlink($filename);
+}
+
+$files = array_diff(scandir(POST_DIR), array('.', '..'));
+$all = array();
+foreach($files as $file) {
+    $data = explode(";", file_get_contents(POST_DIR . $file));
+    $object = new Post;
+    $object->id = $data[0];
+    $object->title = $data[1];
+    $object->text = $data[2];
+    $object->topic = $data[3];
+    $all[] = $object;
+}
+
+//print_r($all);
+
+?>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Post erstellen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,531;0,600;0,700;0,800;0,900;1,400;1,500;1,531;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="flex flex-col h-screen bg-white flex items-center font-sans text-gray-700 space-y-5" style="font-family: 'Jost', sans-serif">
+    
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="font-medium items-center text-center flex flex-col justify-center w-full max-w-xs space-y-5">
+        <?php if(!empty($success_msg)) { ?>
+        <div class="mt-5 w-full px-4 py-2 rounded-md bg-green-500 text-white text-base">
+            <?php echo $success_msg; ?>
+        </div>
+        <?php } ?>
+        <?php if(!empty($error_msg)) { ?>
+        <div class="mt-5 w-full px-4 py-2 rounded-md bg-red-500 text-white text-base">
+            <?php echo $error_msg; ?>
+        </div>
+        <?php } ?>
+        <p class="mt-5 text-xl text-gray-800">Post erstellen</p>
+        <div class="flex flex-col text-left w-full">
+            <p class="text-sm text-gray-800">
+                Thema
+            </p>
+            <select id="input-topic" type="text" name="topic" class="form-data w-full border border-gray-400 rounded-md shadow text-lg px-4 py-1">
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="JavaScript">JavaScript</option>
+            </select>
+        </div>
+        <div class="flex flex-col text-left w-full">
+            <p class="text-sm text-gray-800">
+                Titel
+            </p>
+            <input id="input-title" type="text" name="title" class="form-data w-full border border-gray-400 rounded-md shadow text-xl px-4 py-1"/>
+        </div>
+        <div class="flex flex-col text-left w-full">
+            <p class="text-sm text-gray-800">
+                Text
+            </p>
+            <textarea id="input-text" type="text" name="text" class="form-data w-full border border-gray-400 rounded-md shadow text-xl px-4 py-1"></textarea>
+        </div>
+        <input type="hidden" class="hidden" id="edit-mode" name="edit-mode" value=""/>
+        <div class="flex flex-col text-left w-full">
+            <button id="submit-button" type="submit" class="mt-2 w-full bg-blue-600 hover:bg-blue-500 rounded-md shadow text-base text-white px-4 py-2">
+                Erstellen
+            </button>
+        </div>
+    </form>
+
+    <div class="w-full flex flex-row justify-center items-center space-x-10 text-xl">
+        <span id="select-html" onclick="changeTopic('HTML')" class="cursor-pointer rounded-md p-2">HTML</span>
+        <span id="select-css" onclick="changeTopic('CSS')" class="cursor-pointer rounded-md p-2">CSS</span>
+        <span id="select-js" onclick="changeTopic('JavaScript')" class="cursor-pointer rounded-md p-2">JavaScript</span>
+    </div>
+
+    <div class="w-full max-w-2xl space-y-2">
+        <?php foreach($all as $post) { ?>
+        <div id="topic-<?php echo $post->topic ?>" class="hidden w-full bg-gray-100 rounded-md px-5 py-4">
+            <div class="flex items-center justify-between">
+                <p id="<?php echo $post->id ?>-title" title="<?php echo $post->title; ?>" class="font-semibold">
+                    <?php echo $post->topic . ': ' . $post->title; ?>
+                </p>
+                <div class="flex flex-row items-center">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                        <button onclick="edit('<?php echo $post->id; ?>')" id="edit-button" type="submit" class="bg-gray-200 hover:bg-yellow-500 rounded-md shadow text-base text-white px-2 py-1">
+                            Editieren
+                        </button>
+                        <input hidden value="<?php echo $post->id; ?>" name="id" type="text"/>
+                        <input hidden value="1" name="delete" type="text"/>
+                        <button id="delete-button" type="submit" class="bg-gray-200 hover:bg-red-500 rounded-md shadow text-base text-white px-2 py-1">
+                            Löschen
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <p id="<?php echo $post->id ?>-text" text="<?php echo $post->text; ?>">
+                <?php echo $post->text; ?>
+            </p>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+</body>
+<script>
+    function changeTopic(topic) {
+        reset();
+        if(topic == 'HTML') {
+            enableMenu(document.getElementById('select-html'))
+        } else if(topic == 'CSS') {
+            enableMenu(document.getElementById('select-css'))
+        } else if(topic == 'JavaScript') {
+            enableMenu(document.getElementById('select-js'))
+        }
+        const posts = document.getElementById('topic-' + topic);
+        posts.classList.remove('hidden')
+    }
+    function reset() {
+        const topichtml = document.getElementById('topic-HTML');
+        const topiccss = document.getElementById('topic-CSS');
+        const topicjs = document.getElementById('topic-JavaScript');
+        const selecthtml = document.getElementById('select-html');
+        const selectcss = document.getElementById('select-css');
+        const selectjs = document.getElementById('select-js');
+        if(topichtml) topichtml.classList += " hidden";
+        if(topiccss) topiccss.classList += " hidden";
+        if(topicjs) topicjs.classList += " hidden";
+        if(selecthtml) selecthtml.classList.remove('bg-gray-100')
+        if(selectcss) selectcss.classList.remove('bg-gray-100')
+        if(selectjs) selectjs.classList.remove('bg-gray-100')
+    }
+    function enableMenu(el) {
+        el.className += " bg-gray-100";
+    }
+    function edit(id) {
+        const title = document.getElementById(id + '-title').getAttribute('title');
+        const text = document.getElementById(id + '-text').getAttribute('text');
+        const titleInput = document.getElementById('input-title');
+        const textInput = document.getElementById('input-text');
+        const submitButton = document.getElementById('submit-button');
+        const editModeInput = document.getElementById('edit-mode');
+        editModeInput.value = id;
+        submitButton.innerHTML = "Änderungen speichern";
+        titleInput.value = title;
+        textInput.value = text;
+        console.log(title)
+        console.log(text)
+    }
+    window.onload = function(){ changeTopic('HTML'); };
+
+</script>
+</html>
