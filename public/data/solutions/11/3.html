@@ -1,3 +1,15 @@
+<style>
+    .button {
+        padding: 0.5rem 3rem;
+        background-color: #449d48;
+        border: 0;
+        border-radius: 0.2rem;
+        cursor: pointer;
+    }
+    .button:hover {
+        background-color: #3c8c40;
+    }
+</style>
 <strong>
     Schreiben Sie Ihren WWW-Navigator als SPA in Vue.js mit Vue Router und/oder mit Vuex als State Manager.
 </strong>
@@ -13,8 +25,12 @@ Das Statemanagement befindet sich in der Page.vue, die Children Components (z.b.
 <strong>
     Geben Sie die Inhalte aller Dateien (ohne node_modules) Ihrer Lösung inkl. JS-Quelltext hintereinander ein. Schreiben Sie vor jede Datei deren Dateiname:
 </strong>
+<br/>
+<br/>
+<a class="button" target="_blank" href="http://www2.inf.h-brs.de/~akuerf2s/vue/3">Live Demo</a>
+
 <xmp>
-    // components/ContentText.vue
+// components/ContentText.vue
 <script>
 export default {
   props: ["obermenu", "untermenu", "info"],
