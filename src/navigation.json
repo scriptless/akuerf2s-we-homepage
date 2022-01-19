@@ -1,6 +1,7 @@
 [
     { 
         "id": 1,
+        "topic": "Einführung",
         "subs": [
             { "id": 1, "title": "Über das WWW" },
             { "id": 2, "title": "HTTP Protokoll" },
@@ -10,6 +11,7 @@
     },
     { 
         "id": 2,
+        "topic": "CSS Teil 1",
         "subs": [
             { "id": 1, "title": "CSS Selektoren & Farben" },
             { "id": 2, "title": "CSS Positionierung" },
@@ -18,6 +20,7 @@
     },
     { 
         "id": 3,
+        "topic": "CSS Teil 2",
         "subs": [
             { "id": 1, "title": "Responsiv Flexbox Desktop-First" },
             { "id": 2, "title": "Responsiv Grid Mobile-First" },
@@ -26,6 +29,7 @@
     },
     { 
         "id": 4,
+        "topic": "JavaScript",
         "subs": [
             { "id": 1, "title": "Funktionen" },
             { "id": 2, "title": "Objekte" },
@@ -35,6 +39,7 @@
     },
     { 
         "id": 5,
+        "topic": "DOM",
         "subs": [
             { "id": 1, "title": "Performanzmessung" },
             { "id": 2, "title": "Rednerliste" },
@@ -43,6 +48,7 @@
     },
     { 
         "id": 6,
+        "topic": "ECMAScript",
         "subs": [
             { "id": 1, "title": "Klammerpaare" },
             { "id": 2, "title": "Topologische Iterierbarkeit" },
@@ -53,6 +59,7 @@
     },
     { 
         "id": 7,
+        "topic": "Functional",
         "subs": [
             { "id": 1, "title": "Funktionen in JavaScript" },
             { "id": 2, "title": "Textanalyse" }
@@ -60,6 +67,7 @@
     },
     { 
         "id": 8,
+        "topic": "Async",
         "subs": [
             { "id": 1, "title": "Promises" },
             { "id": 2, "title": "async/await" },
@@ -68,6 +76,7 @@
     },
     { 
         "id": 9,
+        "topic": "SVG",
         "subs": [
             { "id": 1, "title": "SVG von Hand" },
             { "id": 2, "title": "SVG Balkendiagramm" },
@@ -76,6 +85,7 @@
     },
     { 
         "id": 10,
+        "topic": "TypeScript",
         "subs": [
             { "id": 1, "title": "TS Static classes" },
             { "id": 2, "title": "Fehler finden in TS" },
@@ -84,6 +94,7 @@
     },
     { 
         "id": 11,
+        "topic": "Vue",
         "subs": [
             { "id": 1, "title": "Vue Komponente" },
             { "id": 2, "title": "Vue Menu-Komponente" },
@@ -92,10 +103,21 @@
     },
     { 
         "id": 12,
+        "topic": "PHP",
         "subs": [
             { "id": 1, "title": "Registrierung mit PHP" },
             { "id": 2, "title": "Login mit PHP" },
             { "id": 3, "title": "Content Editor mit PHP" }
+        ] 
+    },
+    { 
+        "id": 13,
+        "topic": "Security",
+        "subs": [
+            { "id": 1, "title": "Sicherer ArrayWrapper" },
+            { "id": 2, "title": "WebGoat Injection" },
+            { "id": 3, "title": "WebGoat XSS" },
+            { "id": 4, "title": "WebGoat Cross-Site Request Forgeries" }
         ] 
     }
 ]

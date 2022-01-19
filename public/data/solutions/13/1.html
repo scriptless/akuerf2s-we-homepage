@@ -1,0 +1,17 @@
+<strong>In der Vorlesung wurde ein ArrayWrapper Exploit gezeigt.
+
+    Analysieren Sie die Ursache dieses Exploits.
+    
+    Entwickeln Sie ein Sicherheitskonzept und eine ArrayWrapper-Lösung, die gegen diesen Exploit gewappnet ist.
+</strong>
+<br/>
+Ursachenanalyse:<br/>
+Durch das Setzen im Array von ungeprüften Daten mit ungeprüften Typen, können Angreifer eine getarnte "push"-Funktion in das Array einschleusen, die diese durch die Funktion append() aufgerufen wird.
+<br/>
+<br/>
+Sicherheitskonzept:<br/>
+Man kann den Exploit vermeiden, indem man im Vorhinein prüft, von welchem Typ die Daten sind. Falls diese eine Funktion ist, wird das setzen in das Array automatisch abgelehnt.
+<br/>
+<br/>
+JS-Code:<br/>
+<iframe class="raw" onload="makeRaw(this)" src="../data/solutions/13/1_1.html"></iframe>

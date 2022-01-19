@@ -1,0 +1,36 @@
+function arrayWrapper() {
+	let arrayData = [];
+  return {
+  	get: function(pos) {
+    	return arrayData[pos];
+    },
+    set: function(pos, value) {
+      if(value instanceof Function) {
+      	console.log("Do not exploit me!")
+        return;
+      }
+      if(value instanceof String)
+    	arrayData[pos] = value;
+    },
+    append: function(value) {
+    	arrayData.push(value);
+    }
+  }
+}
+
+function exploit(vector) {
+	var data;
+  vector.set('push', function() {
+  	data = this;
+  });
+  vector.append();
+  return data;
+}
+
+
+const wrappedArray = arrayWrapper();
+wrappedArray.append("test");
+wrappedArray.append("123");
+console.log(wrappedArray.get(0))
+
+console.log(exploit(wrappedArray))
